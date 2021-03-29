@@ -1,0 +1,74 @@
+<!-- Button modal create user-->
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createUserModal">
+  Crear usuario
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createUserModalLabel">Creación de Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="!loading">
+        <!-- Form --->
+        <form class="form-horizontal" [formGroup]="form" *ngIf="!success">
+          <!-- ID -->
+          <div class="form-group row">
+            <label class="col-sm-3 form-control-label">
+              ID
+            </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="id" placeholder="ID">
+              <div class="alert alert-danger" role="alert" *ngIf="form.controls.id.errors && (form.controls.id.dirty || form.controls.id.touched)">
+                <span *ngIf="form.controls.id.errors.required">
+                  El ID es requerido
+                </span>
+              </div>
+            </div>
+          </div><br>
+          <!-- Name -->
+          <div class="form-group row">
+            <label class="col-sm-3 form-control-label">
+              Nombre
+            </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="name" placeholder="Nombre">
+              <div class="alert alert-danger" role="alert" *ngIf="form.controls.name.errors && (form.controls.name.dirty || form.controls.name.touched)">
+                <span *ngIf="form.controls.name.errors.required">
+                  El Nombre es requerido
+                </span>
+              </div>
+            </div>
+          </div><br>
+          <!-- Last Name -->
+          <div class="form-group row">
+            <label class="col-sm-3 form-control-label">
+              Apellido
+            </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="last_name" placeholder="Apellido">
+              <div class="alert alert-danger" role="alert" *ngIf="form.controls.last_name.errors && (form.controls.last_name.dirty || form.controls.last_name.touched)">
+                <span *ngIf="form.controls.last_name.errors.required">
+                  El Nombre es requerido
+                </span>
+              </div>
+            </div>
+          </div><br>
+        </form>
+        <!-- Message -->
+        <div *ngIf="submitted">
+          {{ message }}
+        </div>
+      </div>
+      <div class="spinner-border" role="status" *ngIf="loading">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="modal-footer" *ngIf="!loading">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="reset()">Cerrar</button>
+        <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="save()" *ngIf="!success">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>
