@@ -5,17 +5,21 @@ import { AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 @Injectable({
   providedIn: 'root',
 })
-export class SaveUserService {
+export class UserService {
 
   private dbPath = '/user';
 
-  userRef: AngularFireList<User>;
+  usersRef: AngularFireList<User>;
 
   constructor(private db: AngularFireDatabase) {
-    this.userRef = db.list(this.dbPath);
+    this.usersRef = db.list(this.dbPath);
   }
 
   create(user: User): any {
-    return this.userRef.push(user);
+    return this.usersRef.push(user);
+  }
+
+  getAll(): AngularFireList<User> {
+    return this.usersRef;
   }
 }

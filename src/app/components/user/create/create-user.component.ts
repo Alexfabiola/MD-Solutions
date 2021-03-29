@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { SaveUserService } from 'src/app/shared/services/save-user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-create-user',
@@ -17,7 +17,7 @@ export class CreateUserComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private saveUserService: SaveUserService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +48,7 @@ export class CreateUserComponent implements OnInit {
     this.submitted = true;
     const user = this.form.getRawValue();
 
-    this.saveUserService.create(user).then(
+    this.userService.create(user).then(
       () => {
         this.success = true;
         this.loading = false;

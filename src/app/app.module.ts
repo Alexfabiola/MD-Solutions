@@ -12,6 +12,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserComponent } from './components/user/user.component';
 import { CreateUserComponent } from './components/user/create/create-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserListComponent } from './components/user/list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     UserComponent,
     CreateUserComponent,
+    UserListComponent,
   ],
   entryComponents: [
     UserComponent,
     CreateUserComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,

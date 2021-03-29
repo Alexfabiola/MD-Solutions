@@ -1,0 +1,31 @@
+<div class="list row">
+  <div class="col-md-6">
+    <h4>Lista de Usuarios</h4>
+    <div class="spinner-border" role="status" *ngIf="loading">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div *ngIf="!loading && message == ''">
+      <!-- Users -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; let i = index">
+            <th scope="row">{{user.id}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.last_name}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Message -->
+      <div *ngIf="message !== ''">
+        {{ message }}
+      </div>
+    </div>
+  </div>
+</div>
