@@ -13,6 +13,8 @@ import { UserComponent } from './components/user/user.component';
 import { CreateUserComponent } from './components/user/create/create-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './components/user/list/user-list.component';
+import { MovieComponent } from './components/movie/movie.component';
+import { CreateMovieComponent } from './components/movie/create/create-movie.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,15 @@ import { UserListComponent } from './components/user/list/user-list.component';
     UserComponent,
     CreateUserComponent,
     UserListComponent,
+    MovieComponent,
+    CreateMovieComponent,
   ],
   entryComponents: [
     UserComponent,
     CreateUserComponent,
     UserListComponent,
+    MovieComponent,
+    CreateMovieComponent,
   ],
   imports: [
     BrowserModule,

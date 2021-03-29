@@ -1,0 +1,60 @@
+<!-- Button modal create user-->
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createMovieModal">
+  Crear película
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="createMovieModal" tabindex="-1" aria-labelledby="createMovieModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createMovieModalLabel">Creación de Película</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="!loading">
+        <!-- Form --->
+        <form class="form-horizontal" [formGroup]="form" *ngIf="!success">
+          <!-- title -->
+          <div class="form-group row">
+            <label class="col-sm-3 form-control-label">
+              Título
+            </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="title" placeholder="Título">
+              <div class="alert alert-danger" role="alert" *ngIf="form.controls.title.errors && (form.controls.title.dirty || form.controls.title.touched)">
+                <span *ngIf="form.controls.title.errors.required">
+                  El título es requerido
+                </span>
+              </div>
+            </div>
+          </div><br>
+          <!-- Description -->
+          <div class="form-group row">
+            <label class="col-sm-3 form-control-label">
+              Descripción
+            </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="description" placeholder="Descripción">
+              <div class="alert alert-danger" role="alert" *ngIf="form.controls.description.errors && (form.controls.description.dirty || form.controls.description.touched)">
+                <span *ngIf="form.controls.description.errors.required">
+                  La descripción es requerida
+                </span>
+              </div>
+            </div>
+          </div><br>
+        </form>
+        <!-- Message -->
+        <div *ngIf="submitted">
+          {{ message }}
+        </div>
+      </div>
+      <div class="spinner-border" role="status" *ngIf="loading">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="modal-footer" *ngIf="!loading">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="reset()">Cerrar</button>
+        <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="save()" *ngIf="!success">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>
