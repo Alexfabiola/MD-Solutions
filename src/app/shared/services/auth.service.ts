@@ -40,7 +40,7 @@ export class AuthService {
         });
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        window.alert("Ha ocurrido un error " +  error.message)
       })
   }
  
