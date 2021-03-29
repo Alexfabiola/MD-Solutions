@@ -36,11 +36,12 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(username + '@md-solutions-test.firebaseapp.com', password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert("Ha ocurrido un error " +  error.message)
+        console.error(error.message);
+        //window.alert("Ha ocurrido un error " +  error.message)
       })
   }
  
@@ -56,7 +57,7 @@ export class AuthService {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['']);
         })
       this.SetUserData(result.user);
     }).catch((error) => {
