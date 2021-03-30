@@ -12,10 +12,10 @@ export class AuthService {
   userData: any; // Save logged in user data
 
   constructor(
-    public afs: AngularFirestore,   // Inject Firestore service
-    public afAuth: AngularFireAuth, // Inject Firebase auth service
+    public afs: AngularFirestore,   
+    public afAuth: AngularFireAuth, 
     public router: Router,  
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone 
   ) {    
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -23,6 +23,7 @@ export class AuthService {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
+        this.router.navigate(['']);
         JSON.parse(localStorage.getItem('user'));
       } else {
         localStorage.setItem('user', null);
@@ -35,13 +36,12 @@ export class AuthService {
   SignIn(username, password) {
     return this.afAuth.signInWithEmailAndPassword(username + '@md-solutions-test.firebaseapp.com', password)
       .then((result) => {
+        this.SetUserData(result.user);
         this.ngZone.run(() => {
           this.router.navigate(['']);
         });
-        this.SetUserData(result.user);
       }).catch((error) => {
-        console.error(error.message);
-        //window.alert("Ha ocurrido un error " +  error.message)
+        console.error(error);
       })
   }
  
@@ -49,32 +49,18 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
-  }
-
-  // Auth logic to run auth providers
-  AuthLogin(provider) {
-    return this.afAuth.signInWithPopup(provider)
-    .then((result) => {
-       this.ngZone.run(() => {
-          this.router.navigate(['']);
-        })
-      this.SetUserData(result.user);
-    }).catch((error) => {
-      window.alert(error)
-    })
+    return user !== null;
   }
 
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    const userData: Credential = {
+    const userData = {
       id: user.uid,
-      username: user.username,
-      password: user.password
+      username: user.email
     }
     return userRef.set(userData, {
       merge: true
-    })
+    });
   }
 
   // Sign out 

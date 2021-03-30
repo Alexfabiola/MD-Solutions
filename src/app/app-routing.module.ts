@@ -5,28 +5,32 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { UserComponent } from './components/user/user.component';
-
+import { AuthGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [
   {
     path: 'sign-in',
-    component: SignInComponent
+    component: SignInComponent,    
   },
   {
     path: '',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'user',
-    component: UserComponent
+    component: UserComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'movie',
-    component: MovieComponent
+    component: MovieComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'assignment',
-    component: AssignmentComponent
+    component: AssignmentComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
