@@ -30,6 +30,7 @@ export class AssignmentListComponent implements OnInit {
     this.submitted = false;
     this.success = false;
     this.message = '';
+    this.users = [];
     this.userSuscription = this.userService.users$.subscribe(
       data => {
         this.users = data;
@@ -61,8 +62,7 @@ export class AssignmentListComponent implements OnInit {
       () => {
         this.success = true;
         this.loading = false;
-        this.message = 'Se ha eliminado la película ' + this.movieTitle + ' del usuario ' + this.userName;
-        delete this.users[this.currentUserIndex].movies[this.currentMovieIndex];
+        this.message = 'Se ha eliminado la película ' + this.movieTitle + ' del usuario ' + this.userName;        
       },
       () => {
         this.loading = false;

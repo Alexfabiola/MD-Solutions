@@ -4,32 +4,32 @@
     <div class="spinner-border" role="status" *ngIf="loading">
       <span class="visually-hidden">Loading...</span>
     </div>
-    <div *ngIf="!loading && message == ''">
+    <div *ngIf="!loading">
       <div class="accordion" id="accordionUsers">
         <div class="accordion-item" *ngFor="let user of users;let i = index">
           <h2 *ngIf="userHasMovie(user)" class="accordion-header" id="{{'heading_' + i}}">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse_' + i" aria-expanded="false" [attr.aria-controls]="'collapse_' + i">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#collapse_' + i" aria-expanded="false" [attr.aria-controls]="'collapse_' + i">
               {{ user.name + ' ' + user.last_name}}
             </button>
           </h2>
-          <div id="{{'collapse_' + i}}" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading_' + i" data-bs-parent="#accordionUsers">
+          <div id="{{'collapse_' + i}}" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading_' + i"
+            data-bs-parent="#accordionUsers">
             <div *ngFor="let movie of user.movies | keyvalue;" class="accordion-body">
-              <strong> {{ movie.value.title }} </strong> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removeAssignmentConformationModal" (click)="informationUser(i, movie.value.key)">Eliminar</button>
+              <strong> {{ movie.value.title }} </strong> <button type="button" class="btn btn-danger"
+                data-bs-toggle="modal" data-bs-target="#removeAssignmentConformationModal"
+                (click)="informationUser(i, movie.value.key)">Eliminar</button>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Message -->
-      <div *ngIf="message !== ''">
-        {{ message }}
       </div>
     </div>
   </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="removeAssignmentConformationModal" tabindex="-1" aria-labelledby="removeAssignmentConformationModal"
-  aria-hidden="true">
+<div class="modal fade" id="removeAssignmentConformationModal" tabindex="-1"
+  aria-labelledby="removeAssignmentConformationModal" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
