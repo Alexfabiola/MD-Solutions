@@ -1,0 +1,50 @@
+<!-- Button modal create assignment-->
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createAssignmentModal">
+  Crear asignación
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="createAssignmentModal" tabindex="-1" aria-labelledby="createAssignmentModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createAssignmentModalLabel">Crear Asignación Usuario - Película</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="!userLoading || !movieLoading">
+        <!-- Form --->
+        <form class="form-horizontal" [formGroup]="form" *ngIf="!success">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Usuarios</label>
+              <select class="form-select" formControlName="user">
+                <option disabled>Seleccionar Usuario</option>
+                <option *ngFor="let user of users;" [ngValue]="user"> {{ user.id + ' ' + user.name + ' ' + user.last_name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label>Películas</label>
+              <select class="form-select" formControlName="movie">
+                <option disabled>Seleccionar Película</option>
+                <option *ngFor="let movie of movies;" [ngValue]="movie">{{ movie.title }}</option>
+              </select>
+            </div>
+          </div>
+        </form>
+        <!-- Message -->
+        <div *ngIf="submitted">
+          {{ message }}
+        </div>
+      </div>
+      <div class="spinner-border" role="status" *ngIf="userLoading || movieLoading">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="modal-footer" *ngIf="!userLoading && !movieLoading">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="reset()">Cerrar</button>
+        <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="save()" *ngIf="!success">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>

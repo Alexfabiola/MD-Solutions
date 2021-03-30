@@ -1,0 +1,15 @@
+<div class="form-group row">
+  <h3>Login</h3>
+  <div class="row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="username" #userName required>
+    </div>
+    <div class="col">
+      <input type="password" class="form-control" placeholder="password" #userPassword required>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-secondary"
+        (click)="login(userName.value, userPassword.value)">Entrar</button>
+    </div>
+  </div>
+</div>
