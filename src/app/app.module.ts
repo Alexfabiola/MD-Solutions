@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './components/user/list/user-list.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { CreateMovieComponent } from './components/movie/create/create-movie.component';
+import { MovieListComponent } from './components/movie/list/movie-list.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CreateMovieComponent } from './components/movie/create/create-movie.com
     UserListComponent,
     MovieComponent,
     CreateMovieComponent,
+    MovieListComponent,
   ],
   entryComponents: [
     UserComponent,
@@ -33,6 +35,7 @@ import { CreateMovieComponent } from './components/movie/create/create-movie.com
     UserListComponent,
     MovieComponent,
     CreateMovieComponent,
+    MovieListComponent,
   ],
   imports: [
     BrowserModule,

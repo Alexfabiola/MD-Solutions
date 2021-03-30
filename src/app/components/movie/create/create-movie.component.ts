@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MovieService } from 'src/app/shared/services/movie.service';
-import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-create-movie',
@@ -44,9 +43,9 @@ export class CreateMovieComponent implements OnInit {
   save() {
     this.loading = true;
     this.submitted = true;
-    const user = this.form.getRawValue();
+    const movie = this.form.getRawValue();
 
-    this.movieService.create(user).then(
+    this.movieService.create(movie).then(
       () => {
         this.success = true;
         this.loading = false;

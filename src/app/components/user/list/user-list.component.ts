@@ -37,7 +37,7 @@ export class UserListComponent implements OnInit {
       },
       () => {
         this.loading = false;
-        this.message = 'Ha ocurrido un error al obtener los usuarios'
+        this.message = 'Ha ocurrido un error al obtener los usuarios';
       });
   }
 }
