@@ -36,4 +36,10 @@ export class UserService {
 
     return userMoviesRef.set(movie.key, movie);
   }
+
+  delete(userKey: string, movieKey: string): Promise<void> {
+    const userMovieRef = this.db.list(this.dbPath + '/' + userKey + '/movies');
+
+    return userMovieRef.remove(movieKey);
+  }
 }

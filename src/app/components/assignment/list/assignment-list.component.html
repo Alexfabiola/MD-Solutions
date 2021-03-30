@@ -14,7 +14,7 @@
           </h2>
           <div id="{{'collapse_' + i}}" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading_' + i" data-bs-parent="#accordionUsers">
             <div *ngFor="let movie of user.movies | keyvalue;" class="accordion-body">
-              <strong> {{ movie.value.title }} </strong>
+              <strong> {{ movie.value.title }} </strong> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removeAssignmentConformationModal" (click)="informationUser(i, movie.value.key)">Eliminar</button>
             </div>
           </div>
         </div>
@@ -22,6 +22,35 @@
       <!-- Message -->
       <div *ngIf="message !== ''">
         {{ message }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="removeAssignmentConformationModal" tabindex="-1" aria-labelledby="removeAssignmentConformationModal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="removeAssignmentConformationModal">Confirmación de eliminación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="!loading">
+        <div *ngIf="!success">
+          Realmente desea eliminar la pelicula <strong>{{movieTitle}}</strong> del usuario {{userName}}?
+        </div>
+        <!-- Message -->
+        <div *ngIf="submitted">
+          {{ message }}
+        </div>
+      </div>
+      <div class="spinner-border" role="status" *ngIf="loading">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="modal-footer" *ngIf="!loading">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="reset()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="removeAssignment()" *ngIf="!success">Eliminar</button>
       </div>
     </div>
   </div>
