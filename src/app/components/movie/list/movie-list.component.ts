@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Movie } from 'src/app/shared/models/movie';
 import { MovieService } from 'src/app/shared/services/movie.service';
@@ -13,6 +14,8 @@ export class MovieListComponent implements OnInit {
   public movies: Movie[];
   public loading: boolean;
   public message: string;
+  public movieSuscription: Subscription = null;
+
 
   constructor(private movieService: MovieService
   ) { }
@@ -20,17 +23,7 @@ export class MovieListComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.message = '';
-    this.getMovies();
-  }
-
-  getMovies(): void {
-    this.movieService.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
-        )
-      )
-    ).subscribe(
+    this.movieSuscription = this.movieService.movies$.subscribe(
       data => {
         this.movies = data;
         this.loading = false;
@@ -39,5 +32,9 @@ export class MovieListComponent implements OnInit {
         this.loading = false;
         this.message = 'Ha ocurrido un error al obtener las películas';
       });
+  }
+
+  ngOnDestroy(): void {
+    this.movieSuscription.unsubscribe();    
   }
 }

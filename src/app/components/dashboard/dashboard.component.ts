@@ -21,4 +21,8 @@ export class DashboardComponent implements OnInit {
   goToMovie() {
     this.router.navigate(['movie']);
   }
+
+  goToAssignment() {
+    this.router.navigate(['assignment']);
+  }
 }

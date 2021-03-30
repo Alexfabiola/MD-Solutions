@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AssignmentComponent } from './components/assignment/assignment.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'movie',
     component: MovieComponent
+  },
+  {
+    path: 'assignment',
+    component: AssignmentComponent
   }
 ];
 

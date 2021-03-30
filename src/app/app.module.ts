@@ -16,6 +16,8 @@ import { UserListComponent } from './components/user/list/user-list.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { CreateMovieComponent } from './components/movie/create/create-movie.component';
 import { MovieListComponent } from './components/movie/list/movie-list.component';
+import { AssignmentComponent } from './components/assignment/assignment.component';
+import { CreateAssignmentComponent } from './components/assignment/create/create-assignment.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { MovieListComponent } from './components/movie/list/movie-list.component
     MovieComponent,
     CreateMovieComponent,
     MovieListComponent,
+    AssignmentComponent,
+    CreateAssignmentComponent,
   ],
   entryComponents: [
     UserComponent,
@@ -36,6 +40,7 @@ import { MovieListComponent } from './components/movie/list/movie-list.component
     MovieComponent,
     CreateMovieComponent,
     MovieListComponent,
+    CreateAssignmentComponent,
   ],
   imports: [
     BrowserModule,
